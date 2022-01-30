@@ -1,3 +1,8 @@
+# TODO-List
+
+Uma aplicação criada para o programa de capacitação AceleraZG.
+Tem como objetivo permitir listar e cadastrar tarefas a serem feitas, assim como genrenciar as mesmas.
+
 ## Micronaut 3.2.7 Documentation
 
 - [User Guide](https://docs.micronaut.io/3.2.7/guide/index.html)
