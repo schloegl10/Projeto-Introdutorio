@@ -9,6 +9,16 @@ public class Tarefa {
     private Date dataDeTermino;
     private String nivelDePrioridade;
     private String categoria;
+
+    public Tarefa(String nome, String descricao, Date dataDeTermino, String nivelDePrioridade, String categoria, String status) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.dataDeTermino = dataDeTermino;
+        this.nivelDePrioridade = nivelDePrioridade;
+        this.categoria = categoria;
+        this.status = status;
+    }
+
     private String status;
 
     public void setNome(String nome) {
@@ -23,7 +33,7 @@ public class Tarefa {
         this.dataDeTermino = dataDeTermino;
     }
 
-    public void setNivelDePrioridade(Prioridade nivelDePrioridade) {
+    public void setNivelDePrioridade(String nivelDePrioridade) {
         this.nivelDePrioridade = nivelDePrioridade;
     }
 
@@ -31,7 +41,7 @@ public class Tarefa {
         this.categoria = categoria;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -47,7 +57,7 @@ public class Tarefa {
         return dataDeTermino;
     }
 
-    public Prioridade getNivelDePrioridade() {
+    public String getNivelDePrioridade() {
         return nivelDePrioridade;
     }
 
@@ -55,7 +65,7 @@ public class Tarefa {
         return categoria;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 }
