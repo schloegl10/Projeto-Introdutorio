@@ -15,7 +15,7 @@ import java.util.List;
 
 public class TarefaService {
 
-    private static final String LOCAL_ARQUIVO = "*/";
+    private static final String LOCAL_ARQUIVO = "./src/resources/listaDeTarefas.json";
     private static final String PRIORIDADE = "prioridade";
 
     public String getAll(Boolean crescente) {
@@ -72,7 +72,12 @@ public class TarefaService {
         FileReader file = obtemArquivo();
         if (file != null) {
             JSONTokener tokener = new JSONTokener(file);
-            return new JSONArray(tokener);
+            try {
+                return new JSONArray(tokener);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new JSONArray();
+            }
         } else {
             return new JSONArray();
         }
