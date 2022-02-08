@@ -10,14 +10,16 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class TarefaService {
 
-    private static final String LOCAL_ARQUIVO = "./src/resources/listaDeTarefas.json";
+    private static String LOCAL_ARQUIVO;
     private static final String PRIORIDADE = "prioridade";
-
+    public TarefaService(String localArquivo) {
+        LOCAL_ARQUIVO = localArquivo;
+    }
     public String getAll(Boolean crescente) {
         JSONArray tarefas = obtemConteudoArquivo();
         tarefas = ordenaTarefas(tarefas, crescente);
@@ -49,14 +51,14 @@ public class TarefaService {
     private JSONArray buscaTarefasCategoria(String categoria, JSONArray tarefas) {
         JSONArray tarefasCategoria = new JSONArray();
         for (int i = 0; i < tarefas.length(); i++) {
-            if ((String) tarefas.getJSONObject(i).get("categoria") == categoria) {
+            if (Objects.equals((String) tarefas.getJSONObject(i).get("categoria"), categoria)) {
                 tarefasCategoria.put(tarefas.getJSONObject(i));
             }
         }
         return tarefasCategoria;
     }
 
-    public boolean criaTarefa(String nome, String descricao, Date dataDeTermino, String nivelDePrioridade, String categoria, String status) {
+    public boolean criaTarefa(String nome, String descricao, String dataDeTermino, String nivelDePrioridade, String categoria, String status) {
         JSONArray tarefasJSON = obtemConteudoArquivo();
         JSONObject tarefa = criarTarefaJSONObject(tarefasJSON.length() + 1, nome, descricao, dataDeTermino, nivelDePrioridade, categoria, status);
         tarefasJSON.put(tarefa);
@@ -87,7 +89,6 @@ public class TarefaService {
         try {
             return new FileReader(LOCAL_ARQUIVO);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             return null;
         }
     }
@@ -105,7 +106,7 @@ public class TarefaService {
     }
 
     @NotNull
-    private JSONObject criarTarefaJSONObject(int id, String nome, String descricao, Date dataDeTermino, String nivelDePrioridade, String categoria, String status) {
+    private JSONObject criarTarefaJSONObject(int id, String nome, String descricao, String dataDeTermino, String nivelDePrioridade, String categoria, String status) {
         JSONObject tarefaJSON = new JSONObject();
         tarefaJSON.put("id", id);
         tarefaJSON.put("nome", nome);

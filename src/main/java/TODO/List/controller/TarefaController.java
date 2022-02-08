@@ -11,7 +11,8 @@ import java.util.Date;
 @Controller("/tarefas")
 public class TarefaController {
 
-    TarefaService tarefaService = new TarefaService();
+    private static final String LOCAL_ARQUIVO = "./src/resources/listaDeTarefas.json";
+    TarefaService tarefaService = new TarefaService(LOCAL_ARQUIVO);
 
     @Get(uri = "/getallprioridade", produces = MediaType.TEXT_PLAIN)
     public String getAllOrdenadoPrioridade(Boolean crescente) {
@@ -29,7 +30,7 @@ public class TarefaController {
     }
 
     @Post(uri = "/cria", produces = MediaType.TEXT_PLAIN)
-    public String criaTarefa(String nome, String descricao, Date dataDeTermino, String nivelDePrioridade, String categoria, String status) {
+    public String criaTarefa(String nome, String descricao, String dataDeTermino, String nivelDePrioridade, String categoria, String status) {
         if(tarefaService.criaTarefa(nome, descricao, dataDeTermino, nivelDePrioridade, categoria, status)) {
             return "Sucesso";
         } else {
