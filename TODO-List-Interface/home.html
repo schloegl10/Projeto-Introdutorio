@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>TODO-List</title>
+    <link rel="stylesheet" href="home.css"/>
+</head>
+<body>
+<div id="conteudo">
+    <h3>Lista Tarefas</h3>
+    <div id="inputs">
+        <form action="javascript:void(0);" method="POST" onsubmit="buscaTarefas()">
+            <input name="crescente" type="checkbox" id="crescente">
+            <label for="crescente"> Crescente</label><br>
+            <input name="categoria" type="text" id="categoria" placeholder="Categoria">
+            <label for="categoria"> Categoria</label><br>
+            <input name="id" type="text" id="id" placeholder="Id">
+            <label for="id"> ID</label><br>
+            <input id="btn" type="submit" value="Listar Tarefas">
+        </form>
+    </div>
+</div>
+
+<div id="conteudoCriaTarefas">
+    <h3>Cria Tarefas</h3>
+    <div id="inputsCriacao">
+        <form action="javascript:void(0);" method="POST" onsubmit="criaTarefa()">
+            <input name="nome" type="text" id="nome" placeholder="nome">
+            <label for="nome"> nome</label><br>
+            <input name="descricao" type="text" id="descricao" placeholder="descricao">
+            <label for="descricao"> descricao</label><br>
+            <input name="dataDeTermino" type="text" id="dataDeTermino" placeholder="dataDeTermino">
+            <label for="dataDeTermino"> dataDeTermino</label><br>
+            <input name="nivelDePrioridade" type="text" id="nivelDePrioridade" placeholder="nivelDePrioridade">
+            <label for="nivelDePrioridade"> nivelDePrioridade</label><br>
+            <input name="categoriaC" type="text" id="categoriaC" placeholder="categoriaC">
+            <label for="categoriaC"> Categoria</label><br>
+            <input name="status" type="text" id="status" placeholder="status">
+            <label for="status"> status</label><br>
+            <input id="btnCria" type="submit" value="CriarTarefa">
+        </form>
+    </div>
+</div>
+
+<div id="tarefasForm">
+    <h3>Resultado:</h3>
+    <h4 id="tarefas"></h4>
+</div>
+<div id="erroDiv">
+    <h4 id="erro"></h4>
+</div>
+<script src="home.js" asp-append-version="true"></script>
+</body>
+</html>

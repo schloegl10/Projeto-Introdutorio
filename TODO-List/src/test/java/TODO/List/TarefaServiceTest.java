@@ -1,11 +1,9 @@
 package TODO.List;
 
-import TODO.List.schemas.Tarefa;
 import TODO.List.service.TarefaService;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Objects;
 
 public class TarefaServiceTest {
