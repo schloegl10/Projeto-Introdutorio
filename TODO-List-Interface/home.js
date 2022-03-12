@@ -93,6 +93,24 @@ function criaTarefa() {
     const nivelDePrioridade = document.getElementById('nivelDePrioridade').value.trim();
     const categoria = document.getElementById('categoria').value.trim();
     const status = document.getElementById('status').value.trim();
+    var regexNivelPrioridade = /^[12345]$/;
+    var nivelDePrioridadeRegex = nivelDePrioridade.match(regexNivelPrioridade);
+    var regexData = /^\d{2}\/\d{2}\/\d{4}$/;
+    var dataRegex = dataDeTermino.match(regexData);
+    var dataAtual = new Date();
+    if(nivelDePrioridadeRegex == null) {
+        exibeErro('Nivel De Prioridade não é um número entre 1 e 5');
+        return;
+    }
+    if(dataRegex == null) {
+        exibeErro('Data não está no formato dd/MM/yyyy');
+        return;
+    }
+    var dataDeTerminoDate = new Date(dataDeTermino);
+    if(dates.compare(dataAtual, dataDeTerminoDate) > 0) {
+        exibeErro('Data é anterior ao dia atual');
+        return;
+    }
     const dados = {
         nome: nome,
         descricao: descricao,
@@ -118,4 +136,32 @@ function criaTarefa() {
       validaResposta(data);
     })
     .catch(error => console.error("", error));
+}
+
+var dates = {
+    convert:function(d) {
+        return (
+            d.constructor === Date ? d :
+            d.constructor === Array ? new Date(d[0],d[1],d[2]) :
+            d.constructor === Number ? new Date(d) :
+            d.constructor === String ? new Date(d) :
+            typeof d === "object" ? new Date(d.year,d.month,d.date) :
+            NaN
+        );
+    },
+    compare:function(a,b) {
+        // Compare two dates (could be of any type supported by the convert
+        // function above) and returns:
+        //  -1 : if a < b
+        //   0 : if a = b
+        //   1 : if a > b
+        // NaN : if a or b is an illegal date
+        // NOTE: The code inside isFinite does an assignment (=).
+        return (
+            isFinite(a=this.convert(a).valueOf()) &&
+            isFinite(b=this.convert(b).valueOf()) ?
+            (a>b)-(a<b) :
+            NaN
+        );
+    }
 }
