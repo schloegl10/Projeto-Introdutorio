@@ -20,16 +20,7 @@ class WebCrawler {
             anuncios.addAll(obtemAnuncios(url))
         }
         anuncios = processaAnuncios(anuncios)
-        File file = new File('~/a.csv')
-        FileWriter outputfile = new FileWriter(file)
-        CSVWriter writer = new CSVWriter(outputfile)
-        String[] header = ["Nome", "Valor", "Endereco", "Url"]
-        writer.writeNext(header)
-        for(Anuncio anuncio in anuncios) {
-            String[] data = [anuncio.nome, anuncio.valor, anuncio.endereco, anuncio.url]
-            writer.writeNext(data)
-        }
-        writer.close()
+        geraArquivo(anuncios)
     }
 
     private static List<Anuncio> obtemAnuncios(String url) {
